@@ -1,5 +1,5 @@
 {
-  "name": "parcel-optimizer-friendly-urls",
+  "name": "@kitschpatrol/parcel-optimizer-friendly-urls",
   "version": "0.2.0",
   "description": "Remove index.html from internal links in Parcel 2.x build output",
   "keywords": [
@@ -10,7 +10,7 @@
     "index-html"
   ],
   "author": "Mark van Seventer <mark@vseventer.com> (https://www.vseventer.com)",
-  "repository": "vseventer/parcel-optimizer-friendly-urls",
+  "repository": "kitschpatrol/parcel-optimizer-friendly-urls",
   "license": "MIT",
   "main": "lib/",
   "module": "src/",

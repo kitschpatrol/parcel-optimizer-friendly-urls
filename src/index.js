@@ -4,16 +4,18 @@ import posthtml from 'posthtml';
 import urls from 'posthtml-urls';
 
 // Configure.
-const stripIndexHtml = (startsWith, url) => {
+const stripIndexHtml = (url) => {
   // Verify the URL is our own.
-  if (url.indexOf(startsWith) === 0 && url.slice(-11) === '/index.html') {
-    return url.slice(0, -10); // Keep trailing slash.
+  if (url.startsWith('/') && url.endsWith('.html')) {
+    return url.replace(/^(.+)\/index\.html|index.html|\.html$/g, '$1');
   }
+
   return url; // Return original URL.
 };
 
 // Exports.
 export default new Optimizer({
+  // prettier-ignore
   async optimize({
     bundle,
     contents,
@@ -27,7 +29,7 @@ export default new Optimizer({
     }
 
     const { publicUrl } = bundle.target;
-    const plugin = urls({ eachURL: stripIndexHtml.bind(null, publicUrl) });
+    const plugin = urls({ eachURL: stripIndexHtml.bind(publicUrl) });
     return {
       contents: (await posthtml([plugin]).process(contents)).html,
     };
